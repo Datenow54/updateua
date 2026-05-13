@@ -3,271 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite UA Generator - Real Device 2026</title>
+    <title>100% Real UA Engine - 2026 Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=JetBrains+Mono:wght@300;500&display=swap');
+
+        :root {
+            --neon-cyan: #00f2ff;
+            --neon-blue: #0062ff;
+        }
 
         body {
-            background: #020617;
-            color: #f8fafc;
-            font-family: 'Inter', sans-serif;
+            background: #050a15;
+            color: #d1d5db;
+            font-family: 'JetBrains Mono', monospace;
+            min-height: 100vh;
             overflow-x: hidden;
         }
 
-        .glass {
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(15px);
+        .main-container {
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 0.95));
             border: 1px solid rgba(0, 242, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(20px);
         }
 
-        .neon-text {
+        .neon-title {
             font-family: 'Orbitron', sans-serif;
-            color: #00f2ff;
-            text-shadow: 0 0 15px rgba(0, 242, 255, 0.7);
+            background: linear-gradient(to right, #00f2ff, #0062ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(0, 242, 255, 0.5));
         }
 
-        .custom-select {
-            background: #1e293b;
-            border: 1px solid #334155;
-            color: #94a3b8;
-            transition: all 0.3s ease;
-        }
-
-        .custom-select:focus {
-            border-color: #00f2ff;
-            box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+        .input-box {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid #1e293b;
             color: #fff;
+            transition: 0.3s;
         }
 
-        .btn-glow {
-            background: linear-gradient(90deg, #00f2ff, #0062ff);
-            box-shadow: 0 0 20px rgba(0, 98, 255, 0.4);
-            transition: 0.4s;
+        .input-box:focus {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+            outline: none;
         }
 
-        .btn-glow:hover {
-            box-shadow: 0 0 35px rgba(0, 242, 255, 0.8);
+        .gen-btn {
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-cyan));
+            text-shadow: 0 0 5px #fff;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .gen-btn:hover {
             transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.6);
         }
 
-        .ua-card {
-            border-left: 4px solid #00f2ff;
-            background: #0f172a;
-            animation: slideIn 0.5s ease forwards;
+        .ua-result {
+            border-left: 3px solid var(--neon-cyan);
+            background: rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.6s ease-out forwards;
         }
 
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #020617; }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #00f2ff; }
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-6">
+<body class="flex items-center justify-center p-4">
 
-    <div class="w-full max-w-5xl glass rounded-3xl p-8 md:p-12 relative overflow-hidden">
-        <!-- Floating Circles Animation -->
-        <div class="absolute -top-24 -left-24 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl"></div>
-        <div class="absolute -bottom-24 -right-24 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl"></div>
+    <div class="w-full max-w-5xl main-container rounded-3xl p-6 md:p-10 relative">
+        <div class="absolute top-0 left-0 w-full h-1 shimmer rounded-t-3xl"></div>
 
-        <div class="relative z-10 text-center mb-10">
-            <h1 class="text-4xl md:text-6xl font-black neon-text mb-4">UA GENERATOR PRO</h1>
-            <p class="text-slate-400 tracking-widest text-sm uppercase">100% Undetectable Fingerprint Engine</p>
+        <!-- Header -->
+        <div class="text-center mb-10">
+            <h1 class="text-3xl md:text-5xl font-bold neon-title mb-2">UA MASTER PRO</h1>
+            <p class="text-slate-500 uppercase tracking-widest text-xs">100% Real Device Fingerprinting Engine</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <!-- Platform -->
+        <!-- Options Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <!-- OS Selection -->
             <div>
-                <label class="block text-xs font-bold text-cyan-500 mb-2 uppercase">Platform</label>
-                <select id="platform" onchange="updateBrowsers()" class="w-full custom-select p-4 rounded-xl focus:outline-none">
+                <label class="block text-cyan-500 text-xs font-bold mb-2 uppercase">Platform / OS</label>
+                <select id="os" onchange="updateApps()" class="w-full input-box p-3 rounded-xl cursor-pointer">
                     <option value="android">Android Mobile</option>
-                    <option value="iphone">iPhone / iOS</option>
-                    <option value="ipad">iPad / iPadOS</option>
-                    <option value="windows">Windows Desktop</option>
-                    <option value="linux">Linux System</option>
+                    <option value="iphone">iPhone (iOS)</option>
+                    <option value="ipad">iPad (iPadOS)</option>
+                    <option value="windows">Windows PC</option>
+                    <option value="linux">Linux Desktop</option>
                 </select>
             </div>
 
-            <!-- Browser/App -->
+            <!-- App Selection -->
             <div>
-                <label class="block text-xs font-bold text-cyan-500 mb-2 uppercase">Browser or App</label>
-                <select id="browserApp" class="w-full custom-select p-4 rounded-xl focus:outline-none">
-                    <!-- Options injected by JS -->
+                <label class="block text-cyan-500 text-xs font-bold mb-2 uppercase">Browser / App</label>
+                <select id="app" class="w-full input-box p-3 rounded-xl cursor-pointer">
+                    <!-- Dynamic -->
                 </select>
             </div>
 
-            <!-- Language -->
+            <!-- Country Language -->
             <div>
-                <label class="block text-xs font-bold text-cyan-500 mb-2 uppercase">System Language</label>
-                <select id="locale" class="w-full custom-select p-4 rounded-xl focus:outline-none">
-                    <option value="en-US">English (United States)</option>
-                    <option value="bn-BD">Bengali (Bangladesh)</option>
-                    <option value="en-GB">English (United Kingdom)</option>
+                <label class="block text-cyan-500 text-xs font-bold mb-2 uppercase">System Language</label>
+                <select id="lang" class="w-full input-box p-3 rounded-xl cursor-pointer">
+                    <option value="en-US">English (USA)</option>
+                    <option value="bn-BD">Bengali (BD)</option>
+                    <option value="en-GB">English (UK)</option>
                     <option value="hi-IN">Hindi (India)</option>
-                    <option value="ar-SA">Arabic (Saudi Arabia)</option>
-                    <option value="fr-FR">French (France)</option>
-                    <option value="de-DE">German (Germany)</option>
-                    <option value="pt-BR">Portuguese (Brazil)</option>
                     <option value="ru-RU">Russian (Russia)</option>
+                    <option value="ar-SA">Arabic (Saudi)</option>
+                    <option value="fr-FR">French (France)</option>
                     <option value="ja-JP">Japanese (Japan)</option>
-                    <option value="zh-CN">Chinese (China)</option>
                 </select>
+            </div>
+
+            <!-- Quantity -->
+            <div>
+                <label class="block text-cyan-500 text-xs font-bold mb-2 uppercase">Quantity</label>
+                <input type="number" id="qty" value="5" min="1" max="100" class="w-full input-box p-3 rounded-xl">
             </div>
         </div>
 
-        <div class="flex items-center justify-between mb-8 px-2">
-            <label class="flex items-center space-x-3 cursor-pointer">
-                <input type="checkbox" id="modernModels" class="w-5 h-5 accent-cyan-400">
-                <span class="text-slate-300 text-sm">Force Latest Models (iPhone 16/S26)</span>
-            </label>
-            <div class="text-slate-500 text-xs italic">Version Range: 2024 - 2026 Compatible</div>
-        </div>
-
-        <button onclick="generateEliteUA()" class="w-full btn-glow py-5 rounded-2xl text-white font-bold text-xl uppercase tracking-widest flex justify-center items-center space-x-4">
-            <span id="btnText">Generate 100% Real UA</span>
-            <div id="loader" class="hidden w-6 h-6 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>
+        <button onclick="generateRealUA()" class="w-full gen-btn py-4 rounded-2xl text-white font-bold text-lg flex justify-center items-center gap-3">
+            <span>GENERATE REAL USER-AGENTS</span>
+            <div id="spinner" class="hidden w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
         </button>
 
-        <div id="results" class="mt-10 space-y-4">
-            <!-- Output -->
+        <!-- Result Container -->
+        <div id="results" class="mt-8 space-y-4 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+            <!-- Results will appear here -->
         </div>
     </div>
 
     <script>
-        const androidModels = ["SM-S928B", "SM-G998B", "Pixel 8 Pro", "Pixel 9 Pro", "Xiaomi 14 Ultra", "OnePlus 12", "SM-A546B", "CPH2581", "RMX3851"];
-        const appleModels = ["iPhone 16 Pro Max", "iPhone 15 Pro", "iPhone 14 Pro", "iPhone 13 Pro"];
-        const ipadModels = ["iPad16,3", "iPad14,5", "iPad13,8"];
-
-        const appData = {
-            android: ["Chrome", "Firefox", "Facebook", "Instagram", "Reddit", "Snapchat", "TikTok"],
-            iphone: ["Chrome", "Firefox", "Safari", "Facebook", "Instagram", "Reddit", "Snapchat", "TikTok"],
-            ipad: ["Chrome", "Firefox", "Safari", "Facebook", "Instagram"],
-            windows: ["Chrome", "Firefox", "Edge"],
-            linux: ["Chrome", "Firefox"]
+        const dataSet = {
+            android: {
+                models: ["SM-S928B", "SM-G998B", "Pixel 8 Pro", "Pixel 9 Pro", "Xiaomi 14 Ultra", "OnePlus 12", "SM-A546B"],
+                apps: ["Chrome", "Firefox", "Facebook", "Instagram", "Reddit", "Snapchat", "TikTok"]
+            },
+            iphone: {
+                models: ["iPhone 16 Pro Max", "iPhone 15 Pro", "iPhone 14 Pro", "iPhone 13 Pro"],
+                apps: ["Safari", "Chrome", "Firefox", "Facebook", "Instagram", "Reddit", "Snapchat", "TikTok"]
+            },
+            ipad: {
+                models: ["iPad16,3", "iPad14,5", "iPad13,8"],
+                apps: ["Safari", "Chrome", "Firefox", "Facebook", "Instagram"]
+            },
+            windows: {
+                models: ["Win64; x64"],
+                apps: ["Chrome", "Firefox", "Edge"]
+            },
+            linux: {
+                models: ["X11; Linux x86_64"],
+                apps: ["Chrome", "Firefox"]
+            }
         };
 
-        function updateBrowsers() {
-            const platform = document.getElementById('platform').value;
-            const browserSelect = document.getElementById('browserApp');
-            browserSelect.innerHTML = '';
-            appData[platform].forEach(app => {
+        function updateApps() {
+            const os = document.getElementById('os').value;
+            const appSelect = document.getElementById('app');
+            appSelect.innerHTML = '';
+            dataSet[os].apps.forEach(app => {
                 const opt = document.createElement('option');
                 opt.value = app.toLowerCase();
                 opt.textContent = app;
-                browserSelect.appendChild(opt);
+                appSelect.appendChild(opt);
             });
         }
 
         function rand(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
 
-        function generateEliteUA() {
-            const btnText = document.getElementById('btnText');
-            const loader = document.getElementById('loader');
+        function generateRealUA() {
             const results = document.getElementById('results');
-            const platform = document.getElementById('platform').value;
-            const app = document.getElementById('browserApp').value;
-            const locale = document.getElementById('locale').value;
+            const os = document.getElementById('os').value;
+            const app = document.getElementById('app').value;
+            const lang = document.getElementById('lang').value;
+            const qty = document.getElementById('qty').value;
+            const spinner = document.getElementById('spinner');
 
-            btnText.textContent = "Processing Algorithm...";
-            loader.classList.remove('hidden');
+            spinner.classList.remove('hidden');
             results.innerHTML = '';
 
             setTimeout(() => {
-                for (let i = 0; i < 5; i++) {
+                for(let i=0; i<qty; i++) {
                     let ua = "";
-                    const chromeV = rand(133, 147);
-                    const firefoxV = rand(133, 150);
+                    const model = dataSet[os].models[rand(0, dataSet[os].models.length - 1)];
+                    const chromeV = `${rand(133, 147)}.0.${rand(6000, 6900)}.${rand(100, 150)}`;
+                    const firefoxV = `${rand(133, 150)}.0`;
                     const andV = rand(11, 15);
-                    const iosV = `1${rand(7, 9)}_${rand(1, 5)}`;
-                    const model = androidModels[rand(0, androidModels.length - 1)];
-                    const iModel = appleModels[rand(0, appleModels.length - 1)];
+                    const iosV = `1${rand(7, 8)}_${rand(1, 6)}`;
 
-                    if (platform === 'android') {
-                        if (app === 'chrome') {
-                            ua = `Mozilla/5.0 (Linux; Android ${andV}; ${model}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${chromeV}.0.${rand(1000, 9999)}.${rand(100, 200)} Mobile Safari/537.36`;
-                        } else if (app === 'firefox') {
-                            ua = `Mozilla/5.0 (Android ${andV}; Mobile; rv:${firefoxV}.0) Gecko/${firefoxV}.0 Firefox/${firefoxV}.0`;
-                        } else if (app === 'facebook') {
-                            ua = `[FBAN/FB4A;FBAV/${rand(492, 560)}.0.0.${rand(10, 99)};FBBV/${rand(500000000, 600000000)};FBDM/{density=3.0,width=1080,height=2400};FBLC/${locale};FBCR/WIFI;FBMF/Samsung;FBBD/Samsung;FBPN/com.facebook.katana;FBDV/${model};FBSV/${andV};FBOP/1;FBCA/arm64-v8a:;]`;
-                        } else if (app === 'instagram') {
-                            ua = `Instagram ${rand(373, 430)}.0.0.${rand(10, 68)} Android (${rand(30, 35)}/${andV}; 480dpi; 1080x2400; Samsung; ${model}; q2q; qcom; ${locale})`;
-                        } else if (app === 'reddit') {
+                    if(os === 'android') {
+                        if(app === 'chrome') {
+                            ua = `Mozilla/5.0 (Linux; Android ${andV}; ${model}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${chromeV} Mobile Safari/537.36`;
+                        } else if(app === 'firefox') {
+                            ua = `Mozilla/5.0 (Android ${andV}; Mobile; rv:${firefoxV}) Gecko/${firefoxV} Firefox/${firefoxV}`;
+                        } else if(app === 'facebook') {
+                            ua = `[FBAN/FB4A;FBAV/${rand(492, 560)}.0.0.${rand(10, 99)};FBBV/${rand(500000000, 600000000)};FBDM/{density=3.0,width=1080,height=2400};FBLC/${lang.replace('-','_')};FBCR/WIFI;FBMF/Samsung;FBBD/Samsung;FBPN/com.facebook.katana;FBDV/${model};FBSV/${andV};FBOP/1;FBCA/arm64-v8a:;]`;
+                        } else if(app === 'instagram') {
+                            ua = `Instagram ${rand(373, 430)}.0.0.${rand(10, 68)} Android (${rand(30, 35)}/${andV}; 480dpi; 1080x2400; Samsung; ${model}; qcom; ${lang.replace('-','_')})`;
+                        } else if(app === 'reddit') {
                             ua = `Reddit/Version 202${rand(4, 6)}.${rand(2, 19)}.0/Android/${andV}`;
-                        } else if (app === 'snapchat') {
-                            ua = `Snapchat/13.${rand(74, 91)}.0.${rand(1, 44)} (${model}; Android ${andV}; v8a; ${locale})`;
-                        } else if (app === 'tiktok') {
-                            ua = `com.zhiliaoapp.musically/${rand(34, 45)}.2.42 (Linux; U; Android ${andV}; ${locale}; ${model}; Build/RP1A.${rand(100000, 999999)}; Cronet/58.0.2991.0)`;
+                        } else if(app === 'snapchat') {
+                            ua = `Snapchat/13.${rand(74, 91)}.0.${rand(1, 44)} (${model}; Android ${andV}; v8a; ${lang.replace('-','_')})`;
+                        } else if(app === 'tiktok') {
+                            ua = `com.zhiliaoapp.musically/${rand(34, 45)}.2.42 (Linux; U; Android ${andV}; ${lang}; ${model}; Build/RP1A.${rand(100000, 999999)}; Cronet/58.0.2991.0)`;
                         }
                     } 
-                    else if (platform === 'iphone' || platform === 'ipad') {
-                        const devName = platform === 'iphone' ? iModel : ipadModels[rand(0, 2)];
-                        const osName = platform === 'iphone' ? 'iPhone OS' : 'iPad OS';
-                        
-                        if (app === 'chrome') {
-                            ua = `Mozilla/5.0 (${devName.split(' ')[0]}; CPU ${osName} ${iosV} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/${rand(133, 148)}.0.${rand(1000, 6000)}.${rand(100, 150)} Mobile/15E148 Safari/604.1`;
-                        } else if (app === 'firefox') {
-                            ua = `Mozilla/5.0 (${devName.split(' ')[0]}; CPU ${osName} ${iosV} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) FxiOS/${rand(133, 150)}.0 Mobile/15E148 Safari/605.1.15`;
-                        } else if (app === 'facebook') {
-                            ua = `[FBAN/FBIOS;FBAV/${rand(473, 561)}.0.0;FBBV/${rand(500000000, 600000000)};FBDM/{density=3.0,width=1170,height=2532};FBLC/${locale};FBCR/WIFI;FBMF/iPhone;FBBD/iPhone;FBPN/com.facebook.Messenger;FBDV/${devName};FBSV/${iosV.replace('_','.')};FBOP/5;FBCS/1]`;
-                        } else if (app === 'instagram') {
-                            ua = `Instagram ${rand(362, 428)}.0.0.0.121 (iPhone; iOS ${iosV.replace('_','.')}; ${locale}; ${devName}; it_IT; 362428000)`;
-                        } else if (app === 'reddit') {
-                            ua = `Reddit/${rand(2025, 2026)}.${rand(4, 19)}.1 (iPhone; iOS ${iosV.replace('_','.')}; ${locale})`;
-                        } else if (app === 'snapchat') {
-                            ua = `Snapchat/13.${rand(68, 91)} (iPhone; iOS ${iosV.replace('_','.')}; Build/13.${rand(60, 90)})`;
-                        } else if (app === 'tiktok') {
-                            ua = `TikTok ${rand(32, 43)}.1.0 (iPhone; iOS ${iosV.replace('_','.')}; ${locale})`;
-                        } else {
-                            ua = `Mozilla/5.0 (${devName.split(' ')[0]}; CPU ${osName} ${iosV} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1`;
-                        }
-                    }
-                    else if (platform === 'windows') {
+                    else if(os === 'iphone' || os === 'ipad') {
+                        const platName = os === 'iphone' ? 'iPhone' : 'iPad';
+                        const cpuName = os === 'iphone' ? 'iPhone OS' : 'iPad OS';
+
                         if(app === 'chrome') {
-                            ua = `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${chromeV}.0.${rand(1000, 6000)}.${rand(100, 150)} Safari/537.36`;
+                            ua = `Mozilla/5.0 (${platName}; CPU ${cpuName} ${iosV} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/${rand(133, 148)}.0.${rand(6000, 6900)} Mobile/15E148 Safari/604.1`;
+                        } else if(app === 'firefox') {
+                            ua = `Mozilla/5.0 (${platName}; CPU ${cpuName} ${iosV} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) FxiOS/${firefoxV} Mobile/15E148 Safari/605.1.15`;
+                        } else if(app === 'facebook') {
+                            ua = `[FBAN/FBIOS;FBAV/${rand(473, 561)}.0.0;FBBV/${rand(500000000, 600000000)};FBLC/${lang.replace('-','_')};FBDV/${model};FBSV/${iosV.replace('_','.')};FBOP/5]`;
+                        } else if(app === 'instagram') {
+                            ua = `Instagram ${rand(362, 428)}.0.0.0.121 (iPhone; iOS ${iosV.replace('_','.')}; ${lang.replace('-','_')}; ${model}; it_IT; 362428000)`;
+                        } else if(app === 'tiktok') {
+                            ua = `TikTok ${rand(32, 43)}.1.0 (${platName}; iOS ${iosV.replace('_','.')}; ${lang})`;
                         } else {
-                            ua = `Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:${firefoxV}.0) Gecko/20100101 Firefox/${firefoxV}.0`;
+                            ua = `Mozilla/5.0 (${platName}; CPU ${cpuName} ${iosV} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${rand(16, 18)}.0 Mobile/15E148 Safari/604.1`;
                         }
                     }
-                    else if (platform === 'linux') {
-                        ua = `Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${chromeV}.0.0.0 Safari/537.36`;
+                    else if(os === 'windows') {
+                        if(app === 'firefox') {
+                            ua = `Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:${firefoxV}) Gecko/20100101 Firefox/${firefoxV}`;
+                        } else {
+                            ua = `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${chromeV} Safari/537.36 ${app === 'edge' ? 'Edg/' + chromeV : ''}`;
+                        }
                     }
 
-                    displayResult(ua);
+                    renderUA(ua);
                 }
-                btnText.textContent = "Generate 100% Real UA";
-                loader.classList.add('hidden');
-            }, 1000);
+                spinner.classList.add('hidden');
+            }, 800);
         }
 
-        function displayResult(ua) {
-            const results = document.getElementById('results');
+        function renderUA(ua) {
+            const container = document.getElementById('results');
             const div = document.createElement('div');
-            div.className = 'ua-card p-5 rounded-r-2xl relative group cursor-pointer';
-            div.onclick = () => copyText(ua, div);
+            div.className = 'ua-result p-4 rounded-r-xl group relative cursor-pointer hover:bg-white/5 transition-all';
+            div.onclick = () => copyUA(ua, div);
             div.innerHTML = `
-                <div class="text-xs text-cyan-400 mb-1 font-bold">REAL-TIME DATA GENERATED:</div>
-                <code class="text-slate-300 text-sm break-all font-mono">${ua}</code>
-                <div class="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all text-xs bg-cyan-500 text-white px-2 py-1 rounded">Click to Copy</div>
+                <p class="text-[10px] text-cyan-500 font-bold mb-1 tracking-tighter">DATA_STREAMS_OK</p>
+                <code class="text-xs md:text-sm text-slate-300 break-all leading-relaxed">${ua}</code>
+                <div class="absolute right-3 top-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                </div>
             `;
-            results.appendChild(div);
+            container.appendChild(div);
         }
 
-        function copyText(text, el) {
+        function copyUA(text, el) {
             navigator.clipboard.writeText(text);
             const original = el.innerHTML;
-            el.innerHTML = `<div class="text-green-400 font-bold flex items-center justify-center py-2">✓ COPIED TO CLIPBOARD</div>`;
-            setTimeout(() => el.innerHTML = original, 1500);
+            el.innerHTML = `<p class="text-green-400 font-bold text-center py-2 animate-pulse">✓ COPIED TO CLIPBOARD</p>`;
+            setTimeout(() => { el.innerHTML = original; }, 1000);
         }
 
-        // Initialize
-        updateBrowsers();
+        // Init
+        updateApps();
     </script>
 </body>
 </html>
